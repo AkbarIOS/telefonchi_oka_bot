@@ -169,4 +169,4 @@ This project is licensed under the MIT License.
 
 ## Support
 
-For questions and support, please open an issue in the GitHub repository.
+For questions and support, please open an issue in the GitHub repository.# Fixed database configuration for Railway
