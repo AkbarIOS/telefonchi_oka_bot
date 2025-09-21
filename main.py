@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 import logging
 import sys
+import os
 from typing import Dict
 from app.core.config import settings
 from app.api.webhook import router as webhook_router
@@ -286,10 +287,12 @@ async def get_bot_info(
 
 if __name__ == "__main__":
     # Production-ready server configuration
+    # Use Railway's PORT environment variable if available, fallback to 8000
+    port = int(os.environ.get("PORT", 8000))
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,
+        port=port,
         reload=settings.debug,
         log_level=settings.log_level.lower(),
         access_log=True
