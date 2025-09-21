@@ -1,0 +1,34 @@
+services:
+  bot:
+    build: .
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=telegram_bot
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - TELEGRAM_BOT_TOKEN=8260235482:AAHcY-j5RQmrAHm1pFvcAvUBzGAElXbYKfU
+    volumes:
+      - ./uploads:/app/uploads
+      - .:/app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: telegram_bot
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

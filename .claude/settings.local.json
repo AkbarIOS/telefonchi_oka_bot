@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose build:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(docker logs:*)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(ngrok:*)",
+      "Bash(npx localtunnel:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker restart:*)",
+      "Bash(docker-compose:*)",
+      "Read(//Users/uzum/Desktop/telefonchi_oka/**)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm start)",
+      "Bash(npm uninstall:*)",
+      "Bash(ssh:*)",
+      "Bash(lsof:*)",
+      "Bash(pkill:*)",
+      "Bash(killall:*)",
+      "WebFetch(domain:telefonchi-frontend-fresh.loca.lt)",
+      "Bash(PORT=3000 npm start)",
+      "WebFetch(domain:telefonchi-miniapp-latest.loca.lt)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
