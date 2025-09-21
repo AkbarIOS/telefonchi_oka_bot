@@ -83,8 +83,8 @@ class DatabaseRepository(BaseRepository):
     async def create_user(self, telegram_id: int, first_name: str = None, username: str = None, language: str = 'ru') -> int:
         """Create new user"""
         return await self.insert(
-            "INSERT INTO users (telegram_id, first_name, username, language_code, created_at) VALUES (%s, %s, %s, %s, NOW())",
-            (telegram_id, first_name, username, language)
+            "INSERT INTO users (telegram_id, username, language) VALUES (%s, %s, %s)",
+            (telegram_id, username, language)
         )
 
     async def update_user_state(self, telegram_id: int, state: str, data: Dict = None) -> int:
