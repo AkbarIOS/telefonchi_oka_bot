@@ -22,7 +22,11 @@
       "Bash(killall:*)",
       "WebFetch(domain:telefonchi-frontend-fresh.loca.lt)",
       "Bash(PORT=3000 npm start)",
-      "WebFetch(domain:telefonchi-miniapp-latest.loca.lt)"
+      "WebFetch(domain:telefonchi-miniapp-latest.loca.lt)",
+      "Bash(railway help:*)",
+      "Bash(railway status:*)",
+      "Bash(railway logs:*)",
+      "Bash(railway add:*)"
     ],
     "deny": [],
     "ask": []

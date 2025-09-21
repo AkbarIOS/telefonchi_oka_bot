@@ -638,14 +638,14 @@ class BotHandler:
                     # Convert photo path to URL for Telegram
                     if photo_path.startswith('/static/'):
                         # New format: already a URL path, make it a full URL
-                        photo_url = f"https://telefonchi-backend-working.loca.lt{photo_path}"
+                        photo_url = f"https://telefonchiokabot-production.up.railway.app{photo_path}"
                         await self.telegram_service.send_photo(
                             chat_id, photo_url, ad_text, keyboard
                         )
                     elif photo_path.startswith('/app/uploads/'):
                         # Old format: convert to new format
                         filename = photo_path.split('/')[-1]
-                        photo_url = f"https://telefonchi-backend-working.loca.lt/static/uploads/{filename}"
+                        photo_url = f"https://telefonchiokabot-production.up.railway.app/static/uploads/{filename}"
                         await self.telegram_service.send_photo(
                             chat_id, photo_url, ad_text, keyboard
                         )
@@ -802,7 +802,7 @@ class BotHandler:
                     # Convert photo path to URL for Telegram
                     if photo_path.startswith('/static/'):
                         # New format: already a URL path, make it a full URL
-                        photo_url = f"https://telefonchi-backend-working.loca.lt{photo_path}"
+                        photo_url = f"https://telefonchiokabot-production.up.railway.app{photo_path}"
                         logger.info(f"Using photo URL: {photo_url}")
                         await self.telegram_service.send_photo(
                             chat_id=chat_id,
@@ -813,7 +813,7 @@ class BotHandler:
                     elif photo_path.startswith('/app/uploads/'):
                         # Old format: convert to new format
                         filename = photo_path.split('/')[-1]
-                        photo_url = f"https://telefonchi-backend-working.loca.lt/static/uploads/{filename}"
+                        photo_url = f"https://telefonchiokabot-production.up.railway.app/static/uploads/{filename}"
                         logger.info(f"Converted old path to URL: {photo_url}")
                         await self.telegram_service.send_photo(
                             chat_id=chat_id,
@@ -1059,13 +1059,13 @@ class BotHandler:
                 if photo_path:
                     try:
                         if photo_path.startswith('/static/'):
-                            photo_url = f"https://telefonchi-backend-working.loca.lt{photo_path}"
+                            photo_url = f"https://telefonchiokabot-production.up.railway.app{photo_path}"
                             await self.telegram_service.send_photo(
                                 chat_id, photo_url, ad_text, keyboard
                             )
                         elif photo_path.startswith('/app/uploads/'):
                             filename = photo_path.split('/')[-1]
-                            photo_url = f"https://telefonchi-backend-working.loca.lt/static/uploads/{filename}"
+                            photo_url = f"https://telefonchiokabot-production.up.railway.app/static/uploads/{filename}"
                             await self.telegram_service.send_photo(
                                 chat_id, photo_url, ad_text, keyboard
                             )

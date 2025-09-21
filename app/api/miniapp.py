@@ -141,7 +141,7 @@ async def get_user_advertisements(
         ads = await bot_handler.advertisement_service.db.fetchall(query, params)
 
         # Convert photo paths to proxied URLs to avoid CORS issues in Telegram WebApp
-        base_url = "https://telefonchi-backend-working.loca.lt"
+        base_url = "https://telefonchiokabot-production.up.railway.app"
         for ad in ads:
             if ad.get('photo_path'):
                 # If already a full URL, leave it
@@ -252,7 +252,7 @@ async def create_advertisement(
 
         # Convert photo path to proxied URL to avoid CORS issues in Telegram WebApp
         if ad and ad.get('photo_path'):
-            base_url = "https://telefonchi-backend-working.loca.lt"
+            base_url = "https://telefonchiokabot-production.up.railway.app"
             # If already a full URL, leave it
             if ad['photo_path'].startswith('http'):
                 pass

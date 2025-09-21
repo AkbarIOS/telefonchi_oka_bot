@@ -22,7 +22,7 @@ class KeyboardBuilder:
                     {"text": self.localization.get_text('my_favorites', language), "callback_data": "my_favorites"}
                 ],
                 [
-                    {"text": web_app_text, "web_app": {"url": "https://telefonchi-miniapp-working.loca.lt"}}
+                    {"text": web_app_text, "web_app": {"url": "https://telefonchiokaminiapp-production.up.railway.app"}}
                 ],
                 [
                     {"text": self.localization.get_text('language_button', language), "callback_data": "language"},
