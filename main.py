@@ -112,8 +112,20 @@ async def proxy_image_options(filename: str):
 @app.get("/api/proxy/image/{filename}")
 async def proxy_image(filename: str):
     """Proxy images through the API domain to avoid CORS issues in Telegram WebApp"""
-    file_path = f"/app/uploads/{filename}"
-    if not os.path.exists(file_path):
+    # Try multiple possible locations for uploaded files
+    possible_paths = [
+        f"/static/uploads/{filename}",  # Railway deployment path
+        f"/app/uploads/{filename}",     # Docker deployment path
+        f"uploads/{filename}"           # Local development path
+    ]
+
+    file_path = None
+    for path in possible_paths:
+        if os.path.exists(path):
+            file_path = path
+            break
+
+    if not file_path:
         raise HTTPException(status_code=404, detail="File not found")
 
     response = FileResponse(file_path)

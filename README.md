@@ -88,6 +88,56 @@ MINI_APP_URL=https://your-miniapp-domain.com
 - `GET /api/categories` - Get all categories
 - `GET /api/brands` - Get all brands
 
+## Database Migrations
+
+This project uses a Laravel/Django-style migration system to manage database schema changes. All schema modifications are tracked and versioned.
+
+### Migration Commands
+
+```bash
+# Run all pending migrations
+python migrate.py migrate
+
+# Check migration status
+python migrate.py status
+
+# Create new migration
+python migrate.py create add_new_column
+
+# Rollback last migration
+python migrate.py rollback
+
+# Rollback multiple migrations
+python migrate.py rollback 3
+```
+
+### Fresh Installation Setup
+
+For a new project copy, simply run:
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run all migrations (creates database schema)
+python migrate.py migrate
+
+# Start the application
+uvicorn main:app --reload --port 8000
+```
+
+**No more manual database setup required!** The migration system will automatically create all tables, columns, and sample data.
+
+### Railway/Production Deployment
+
+After code deployment, run migrations:
+
+```bash
+python migrate.py migrate
+```
+
+This ensures your database schema is always up-to-date with the latest code changes.
+
 ## Development
 
 ### Local Development Setup
@@ -99,7 +149,7 @@ MINI_APP_URL=https://your-miniapp-domain.com
 
 2. **Run database migrations**
    ```bash
-   # Set up your database schema
+   python migrate.py migrate
    ```
 
 3. **Start development server**
