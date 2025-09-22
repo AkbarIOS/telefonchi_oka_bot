@@ -11,6 +11,7 @@ class KeyboardBuilder:
     def get_main_menu(self, language: str = 'ru') -> Dict:
         """Get main menu keyboard"""
         web_app_text = "📱 Mini App" if language == 'ru' else "📱 Mini Ilova"
+
         return {
             "inline_keyboard": [
                 # TEMPORARILY HIDING OTHER BUTTONS - ONLY SHOWING MINI APP
