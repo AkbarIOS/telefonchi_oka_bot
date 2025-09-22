@@ -90,8 +90,21 @@ async def serve_upload_options(filename: str):
 @app.get("/static/uploads/{filename}")
 async def serve_upload(filename: str, request: Request):
     """Serve uploaded files with proper CORS headers"""
-    file_path = f"/app/uploads/{filename}"
-    if not os.path.exists(file_path):
+    # Try multiple possible locations for uploaded files
+    possible_paths = [
+        f"/app/uploads/{filename}",     # Railway/Docker deployment path
+        f"uploads/{filename}",          # Local development path
+        f"static/uploads/{filename}"    # Local static path
+    ]
+
+    file_path = None
+    for path in possible_paths:
+        if os.path.exists(path):
+            file_path = path
+            break
+
+    if not file_path:
+        logger.error(f"Static file not found: {filename}. Searched paths: {possible_paths}")
         raise HTTPException(status_code=404, detail="File not found")
 
     response = FileResponse(file_path)
@@ -114,9 +127,10 @@ async def proxy_image(filename: str):
     """Proxy images through the API domain to avoid CORS issues in Telegram WebApp"""
     # Try multiple possible locations for uploaded files
     possible_paths = [
-        f"/static/uploads/{filename}",  # Railway deployment path
-        f"/app/uploads/{filename}",     # Docker deployment path
-        f"uploads/{filename}"           # Local development path
+        f"/app/uploads/{filename}",     # Railway/Docker deployment path (where files are actually saved)
+        f"/static/uploads/{filename}",  # Alternative path
+        f"uploads/{filename}",          # Local development path
+        f"static/uploads/{filename}"    # Local static path
     ]
 
     file_path = None
@@ -126,6 +140,7 @@ async def proxy_image(filename: str):
             break
 
     if not file_path:
+        logger.error(f"Image file not found: {filename}. Searched paths: {possible_paths}")
         raise HTTPException(status_code=404, detail="File not found")
 
     response = FileResponse(file_path)
