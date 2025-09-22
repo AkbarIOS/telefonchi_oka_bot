@@ -58,15 +58,20 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS middleware (only in debug mode for security)
-if settings.debug:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+# CORS middleware - allow specific origins for production security
+allowed_origins = ["*"] if settings.debug else [
+    "https://telefonchiokaminiapp-production.up.railway.app",
+    "http://localhost:3000",  # For local development
+    "https://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],
+)
 
 # Custom static file handler with CORS headers
 from fastapi.responses import FileResponse
