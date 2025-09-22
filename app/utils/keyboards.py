@@ -26,6 +26,7 @@ class KeyboardBuilder:
                 [
                     {"text": web_app_text, "web_app": {"url": "https://telefonchiokaminiapp-production.up.railway.app"}}
                 ],
+
                 # [
                 #     {"text": self.localization.get_text('language_button', language), "callback_data": "language"},
                 #     {"text": self.localization.get_text('help_button', language), "callback_data": "help"}
