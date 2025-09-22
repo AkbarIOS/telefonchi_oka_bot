@@ -13,21 +13,22 @@ class KeyboardBuilder:
         web_app_text = "📱 Mini App" if language == 'ru' else "📱 Mini Ilova"
         return {
             "inline_keyboard": [
-                [
-                    {"text": self.localization.get_text('sell_button', language), "callback_data": "sell"},
-                    {"text": self.localization.get_text('buy_button', language), "callback_data": "buy"}
-                ],
-                [
-                    {"text": self.localization.get_text('my_ads', language), "callback_data": "my_ads"},
-                    {"text": self.localization.get_text('my_favorites', language), "callback_data": "my_favorites"}
-                ],
+                # TEMPORARILY HIDING OTHER BUTTONS - ONLY SHOWING MINI APP
+                # [
+                #     {"text": self.localization.get_text('sell_button', language), "callback_data": "sell"},
+                #     {"text": self.localization.get_text('buy_button', language), "callback_data": "buy"}
+                # ],
+                # [
+                #     {"text": self.localization.get_text('my_ads', language), "callback_data": "my_ads"},
+                #     {"text": self.localization.get_text('my_favorites', language), "callback_data": "my_favorites"}
+                # ],
                 [
                     {"text": web_app_text, "web_app": {"url": "https://telefonchiokaminiapp-production.up.railway.app"}}
                 ],
-                [
-                    {"text": self.localization.get_text('language_button', language), "callback_data": "language"},
-                    {"text": self.localization.get_text('help_button', language), "callback_data": "help"}
-                ]
+                # [
+                #     {"text": self.localization.get_text('language_button', language), "callback_data": "language"},
+                #     {"text": self.localization.get_text('help_button', language), "callback_data": "help"}
+                # ]
             ]
         }
 
