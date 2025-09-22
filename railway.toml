@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "never"
+
+[[deploy.volumes]]
+mountPath = "/app/uploads"
+name = "uploads-volume"
